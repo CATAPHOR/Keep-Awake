@@ -34,9 +34,16 @@ def check_inactive(pos):
     time.sleep(30)
     return pyautogui.position() == pos
 
+# press non-intrusive keyboard keys
+def key_press():
+    with pyautogui.hold("shift"):
+        pyautogui.press("f15")
+    time.sleep(float(1) / random.randint(1, 10))
+
 if __name__ == "__main__":
     pyautogui.FAILSAFE = False
     while True:
         pos = pyautogui.position()
         if check_inactive(pos):
+            key_press()
             move_mouse(pos)
